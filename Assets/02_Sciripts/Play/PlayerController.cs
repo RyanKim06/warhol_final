@@ -63,6 +63,7 @@ namespace n_Player
         bool lightKeyClick = true;
         bool lightThrowing = false;
         GameObject lightExp;
+        int lightKeyClickCnt = 0;
 
         void Awake()
         {
@@ -296,16 +297,37 @@ namespace n_Player
 
         public void LightKeyClick()
         {
-            if(lightKeyClick)
+            //if(lightKeyClick)
+            //{
+            //    lightExp = Instantiate(lightExpPrefab, transform.position, transform.rotation);
+            //    lightExp.SetActive(true);
+            //    lightKeyClick = !lightKeyClick;
+            //}
+            //else
+            //{
+            //    ExplodeLight();
+            //    lightKeyClick = !lightKeyClick;
+            //}
+
+            //if (lightExp().isDelay) return;
+
+            switch(lightKeyClickCnt)
             {
-                lightExp = Instantiate(lightExpPrefab, transform.position, transform.rotation);
-                lightExp.SetActive(true);
-                lightKeyClick = !lightKeyClick;
+                case 0:
+                    lightExp.SetActive(true);
+                    break;
+                case 1:
+                    lightExp.GetComponent<LightExp>().TurnOn(5f);
+                    break;
+                default:
+                    Debug.Log($"lightKeyClickCnt: out of range ({lightKeyClickCnt})");
+                    break;
             }
-            else
+
+            lightKeyClickCnt++;
+            if(lightKeyClickCnt > 2)
             {
-                ExplodeLight();
-                lightKeyClick = !lightKeyClick;
+                lightKeyClickCnt = 0;
             }
         }
 

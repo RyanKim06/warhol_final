@@ -9,8 +9,11 @@ public class LightExp : MonoBehaviour
     private Rigidbody2D rb;
     private bool objStop = true;
 
+    private Vector3 initPos;
+
     private void Awake()
     {
+        initPos = transform.position;
         light2D = GetComponent<Light2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -24,15 +27,22 @@ public class LightExp : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        //AddForce
+
+    }
+
     public void TurnOn(float duration)
     {
         objStop = true;
-        light2D.gameObject.SetActive(true);
+        //light2D.gameObject.SetActive(true);
         Invoke("TurnOff", duration);
     }
 
     private void TurnOff()
     {
         light2D.gameObject.SetActive(false);
+        transform.position = initPos;
     }
 }
