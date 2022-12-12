@@ -309,15 +309,19 @@ namespace n_Player
             //    lightKeyClick = !lightKeyClick;
             //}
 
-            //if (lightExp().isDelay) return;
+            Debug.Log($"lightExp Button Delaying: {lightExp.GetComponent<LightExp>().isDelay}");
 
-            switch(lightKeyClickCnt)
+            //µô·¹ÀÌ ÁßÀÌ¸é ¹öÆ° ÀÔ·Â ¹«½Ã
+            if (lightExp.GetComponent<LightExp>().isDelay)
+                return;
+
+            switch (lightKeyClickCnt)
             {
                 case 0:
-                    lightExp.SetActive(true);
+                    lightExp.SetActive(true); //³¯¾Æ°¨
                     break;
                 case 1:
-                    lightExp.GetComponent<LightExp>().TurnOn(5f);
+                    lightExp.GetComponent<LightExp>().TurnOn(5f); //¸ØÃß°í ÄÑÁü, µô·¹ÀÌ ÈÄ ²¨Áü
                     break;
                 default:
                     Debug.Log($"lightKeyClickCnt: out of range ({lightKeyClickCnt})");

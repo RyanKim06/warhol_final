@@ -8,8 +8,9 @@ public class LightExp : MonoBehaviour
     private Light2D light2D;
     private Rigidbody2D rb;
     private bool objStop = true;
-
     private Vector3 initPos;
+
+    public bool isDelay = false;
 
     private void Awake()
     {
@@ -30,19 +31,21 @@ public class LightExp : MonoBehaviour
     private void OnEnable()
     {
         //AddForce
-
+        objStop = false;
+        isDelay = true;
     }
 
     public void TurnOn(float duration)
     {
         objStop = true;
-        //light2D.gameObject.SetActive(true);
-        Invoke("TurnOff", duration);
+        Invoke(nameof(TurnOff), duration);
     }
 
     private void TurnOff()
     {
         light2D.gameObject.SetActive(false);
         transform.position = initPos;
+        objStop = false;
+        isDelay = false;
     }
 }
