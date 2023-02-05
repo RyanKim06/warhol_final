@@ -9,7 +9,7 @@ public class MeteorB : MonoBehaviour
     //오브젝트 풀
     private IObjectPool<MeteorB> managedPool;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

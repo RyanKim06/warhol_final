@@ -58,11 +58,11 @@ namespace n_Player
 
         [Header("LightExp")]
         public GameObject lightExpPrefab;
+        GameObject lightExp;
         public float lightThrowCounter = 0f;
         bool lightKeyDown;
         bool lightKeyClick = true;
         bool lightThrowing = false;
-        GameObject lightExp;
         int lightKeyClickCnt = 0;
 
         void Awake()
@@ -78,8 +78,10 @@ namespace n_Player
         {
             gamedata = GameObject.Find("GameData").GetComponent<GameData>(); // game data 가져옴
             gamedata.isPlayGame = true; // 게임을 한 번 플레이 했다고 알려줌
+            lightExp = Instantiate(lightExpPrefab, transform.position, transform.rotation);
+            lightExp.SetActive(false);
 
-            if(useWaterdrop)
+            if (useWaterdrop)
             {
                 waterdropPool = ObstacleManager.Instance.GetWaterdropPool();
                 leftWaterdrop = maxWaterdrop;
@@ -309,16 +311,23 @@ namespace n_Player
             //    lightKeyClick = !lightKeyClick;
             //}
 
-            Debug.Log($"lightExp Button Delaying: {lightExp.GetComponent<LightExp>().isDelay}");
+            //Debug.Log($"lightExp Button Delaying: {lightExp.GetComponent<LightExp>().isDelay}");
+            //Debug.Log(lightKeyClickCnt);
 
             //딜레이 중이면 버튼 입력 무시
             if (lightExp.GetComponent<LightExp>().isDelay)
                 return;
+            Debug.Log($"lightExp Button Delaying: {lightExp.GetComponent<LightExp>().isDelay}");
 
             switch (lightKeyClickCnt)
             {
                 case 0:
-                    lightExp.SetActive(true); //날아감
+                    lightExp.transform.position = transform.localPosition;
+                    if (isFacingRight)
+                        lightExp.GetComponent<LightExp>().fwdDir = 1;
+                    else
+                        lightExp.GetComponent<LightExp>().fwdDir = -1;
+                    lightExp.SetActive(true); //날아감       
                     break;
                 case 1:
                     lightExp.GetComponent<LightExp>().TurnOn(5f); //멈추고 켜짐, 딜레이 후 꺼짐
@@ -329,7 +338,7 @@ namespace n_Player
             }
 
             lightKeyClickCnt++;
-            if(lightKeyClickCnt > 2)
+            if(lightKeyClickCnt >= 2)
             {
                 lightKeyClickCnt = 0;
             }

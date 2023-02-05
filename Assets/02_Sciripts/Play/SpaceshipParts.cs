@@ -20,6 +20,7 @@ public class SpaceshipParts : MonoBehaviour
                 isPartCheck = false;
             }
         }
+
         if (isPartCheck)
         {
             gamedata.parts.Add(gameObject.name);

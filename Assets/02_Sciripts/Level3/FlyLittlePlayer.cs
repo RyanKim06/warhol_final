@@ -16,7 +16,7 @@ public class FlyLittlePlayer : MonoBehaviour
     public GameObject crearButton;
     public GameObject startButton;
 
-    public PipeSpawner pipespawner;
+    public SpawnManager pipespawner;
     public bool isgamestart = false;
     public Animator ani;
 
@@ -25,6 +25,9 @@ public class FlyLittlePlayer : MonoBehaviour
 
     public GameObject EndingImg;
     public GameObject cutImg;
+
+    [HideInInspector]
+    public int partsNum = 0;
 
     void Start()
     {
@@ -38,7 +41,7 @@ public class FlyLittlePlayer : MonoBehaviour
 
     void Update()
     {
-        if (isgamestart)
+        if (isgamestart) //게임이 시작하면 마우스 입력 가져와서 velcoity update
         {
             GetMouse();
         }
@@ -54,8 +57,8 @@ public class FlyLittlePlayer : MonoBehaviour
 
     public void GameStart()
     {
-        isgamestart = true;
-        pipespawner.isgamestart = true;
+        isgamestart = true; //Update()에서 마우스 입력받기 허용
+        pipespawner.isgamestart = true; //
         statePanel.SetActive(false);
         collider1.SetActive(false);
         ani.SetBool("isPlayerPro", true);
@@ -93,7 +96,16 @@ public class FlyLittlePlayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "stage3object")
+        //if(collision.gameObject.tag == "stage3object")
+        //{
+        //    Time.timeScale = 0f; //일시정지
+        //    gameendpanel.SetActive(true);
+        //    crearButton.SetActive(true);
+        //    startButton.SetActive(false);
+        //    restartButton.SetActive(false);
+        //}
+
+        if(partsNum >= 4) //Clear!
         {
             Time.timeScale = 0f; //일시정지
             gameendpanel.SetActive(true);
@@ -102,7 +114,7 @@ public class FlyLittlePlayer : MonoBehaviour
             restartButton.SetActive(false);
         }
 
-        if (collision.gameObject.tag == "stageout")
+        if (collision.gameObject.tag == "stageout") //Restart?
         {
             Time.timeScale = 0f; //일시정지
             gameendpanel.SetActive(true);

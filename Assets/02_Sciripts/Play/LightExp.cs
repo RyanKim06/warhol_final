@@ -11,41 +11,55 @@ public class LightExp : MonoBehaviour
     private Vector3 initPos;
 
     public bool isDelay = false;
+    public int fwdDir = 1;
 
-    private void Awake()
+    private void Start()
     {
         initPos = transform.position;
         light2D = GetComponent<Light2D>();
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable()
+    {
+        objStop = false;
+    }
+
     private void FixedUpdate()
     {
         if(objStop == false)
         {
-            Vector2 newPos = Vector2.MoveTowards(rb.position, Vector2.one * 40f, 5f * Time.deltaTime);
-            rb.MovePosition(newPos);
+            Vector2 newPos = Vector2.MoveTowards(transform.position, transform.position + (new Vector3(fwdDir, 1) * 40f), 5f * Time.deltaTime);
+            transform.position = newPos;
         }
-    }
-
-    private void OnEnable()
-    {
-        //AddForce
-        objStop = false;
-        isDelay = true;
     }
 
     public void TurnOn(float duration)
     {
+        Debug.Log("LightExp TurnOn()");
+        rb.gravityScale = 0f;
         objStop = true;
+        isDelay = true;
+
+        Color onColor;
+        ColorUtility.TryParseHtmlString("FFDAC6", out onColor);
+        light2D.color = onColor;
+        light2D.intensity = 3f;
+        light2D.pointLightOuterRadius = 10f;
+
         Invoke(nameof(TurnOff), duration);
     }
 
     private void TurnOff()
     {
-        light2D.gameObject.SetActive(false);
-        transform.position = initPos;
-        objStop = false;
         isDelay = false;
+        rb.gravityScale = 1f;
+
+        Color onColor;
+        ColorUtility.TryParseHtmlString("FD9E6A", out onColor);
+        light2D.color = onColor;
+        light2D.intensity = 1.7f;
+        light2D.pointLightOuterRadius = 0.9f;
+        gameObject.SetActive(false);
     }
 }

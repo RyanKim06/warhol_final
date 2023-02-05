@@ -748,12 +748,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageImage: {fileID: 1217938124}
   SceneImages:
-  - {fileID: 21300000, guid: 7ef77e9b31f81134dac5d822c3052a64, type: 3}
-  - {fileID: 1373340525, guid: 6e5b6fa68760a1b4cbfb1d58b30966bc, type: 3}
-  - {fileID: 474257750, guid: 6e5b6fa68760a1b4cbfb1d58b30966bc, type: 3}
-  - {fileID: 474257750, guid: 6e5b6fa68760a1b4cbfb1d58b30966bc, type: 3}
-  - {fileID: 474257750, guid: 6e5b6fa68760a1b4cbfb1d58b30966bc, type: 3}
-  - {fileID: 474257750, guid: 6e5b6fa68760a1b4cbfb1d58b30966bc, type: 3}
+  - {fileID: 21300000, guid: e2a819773d672194ca84fca3d033c43d, type: 3}
+  - {fileID: 21300000, guid: e2a819773d672194ca84fca3d033c43d, type: 3}
+  - {fileID: 21300000, guid: e2a819773d672194ca84fca3d033c43d, type: 3}
+  - {fileID: 21300000, guid: e2a819773d672194ca84fca3d033c43d, type: 3}
+  - {fileID: 21300000, guid: e2a819773d672194ca84fca3d033c43d, type: 3}
+  - {fileID: 21300000, guid: e2a819773d672194ca84fca3d033c43d, type: 3}
   progressBar: {fileID: 1858076259}
   gamedata: {fileID: 0}
 --- !u!1 &1920565702

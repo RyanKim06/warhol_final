@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 2.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,7 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.warhol2211B
+    Android: com.Warhol.MoonEscapeRevealTheTruth
     Standalone: com.DefaultCompany.warhol2211B
   buildNumber:
     Standalone: 0
@@ -274,7 +274,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 74ba8c9b2d4fdda428e04343a9d5a7f4, type: 3}
+      m_Icon: {fileID: 2800000, guid: 2b049d5b24934be42b9ed77d2e29a82f, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
